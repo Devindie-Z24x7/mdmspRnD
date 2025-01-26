@@ -3,23 +3,14 @@ package com.example.mdmspaws.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
-public class DownloadFileRequestDto {
+public class DownloadableS3Request {
 
-    private String bucketName;
-    private List<String> objectKeys;
-
-
-    public String getBucketName() {
-        return bucketName;
-    }
-
-    public void setBucketName(String bucketName) {
-        this.bucketName = bucketName;
-    }
+    private List<String> objectKeys; // Initialize here
 
     public List<String> getObjectKeys() {
         return objectKeys;
@@ -29,4 +20,3 @@ public class DownloadFileRequestDto {
         this.objectKeys = objectKeys;
     }
 }
-

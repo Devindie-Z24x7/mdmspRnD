@@ -17,13 +17,16 @@ public class S3Controller {
         this.s3Service = s3Service;
     }
 
-    @PostMapping("/generate-presigned-url")
-    public ResponseEntity<String> generatePresignedUrl(@RequestBody DownloadFileRequestDto request) {
+    @PostMapping("/download")
+    public ResponseEntity<?> downloadMultipleFiles(@RequestBody DownloadFileRequestDto request) {
         try {
-            String presignedUrl = s3Service.copyAndGeneratePresignedUrl(request);
-            return ResponseEntity.ok(presignedUrl);
+            Long requestId = s3Service.download(request);
+
+            return ResponseEntity.ok(requestId);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
+
+
 }
